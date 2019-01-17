@@ -256,100 +256,6 @@ components:
         canonical_url_zh:
           type: string
           description: 'Canonical URL to this Job opening in Simplified Chinese, with Referral Code attached in query if requested'
-      example:
-        id: 879
-        title: Content and Digital Marketing Specialist / Manager
-        industry_id: 3
-        contract_type_id: 1
-        description: |-
-          JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.
-
-          The Candidate will be in a position to make key decisions regarding all content pertaining to JobsRnR, with the primary goal of increasing traffic and profile.
-
-          What You'll Be Doing
-          • Establish and execute content and digital marketing strategies for the platform
-
-          • Develop and generate content through various marketing channels such as through EDM, Blogs, Social Media and our website
-
-          • Monitor SEO performance and make strategic recommendations
-
-          • Establish overall backlink strategy and execute it
-
-          • Establish overall SEM strategy and execute it
-
-          • Write, edit and publish content, and/or supervise content pipeline
-
-          • Coordinate the execution of the above with vendors and team members
-
-          What We Expect From You
-          • Bilingual: Native or close to native proficiency in English and Chinese (Cantonese or Mandarin)
-
-          • Experienced with Content Generation: You have experience generating content that draws traffic. You're able to identify and appreciate good content when you see it.
-
-          • Technical Knowledge: You have a functional knowledge of SEO technicalities and SEM strategy or tactics. You understand how website structures impact SEO performance.
-
-          • Team Player: You have a track record of working well with and managing stakeholders.
-
-          Length of experience isn't important - Confidence and demonstrable performance matters most.
-        salary_range: '[20000,30001)'
-        yrs_experience: '3.0'
-        seniority: middle
-        referrer_reward: 3000
-        candidate_reward: 0
-        reward_condition_id: 4
-        post_date: '2018-11-29T16:00:00.000Z'
-        slug: jobsrnr-content-and-digital-marketing-specialist-manager
-        status: open
-        meta_title: Content and Digital Marketing Specialist / Manager
-        meta_description: 'JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.'
-        meta_title_zh_tw: null
-        meta_description_zh_tw: null
-        meta_title_zh: null
-        meta_description_zh: null
-        featured_at: null
-        city_id: 1
-        is_anonymous: false
-        company_id: 35
-        company_name: JobsRnR
-        company_name_zh_tw: JobsRnR
-        company_name_zh: JobsRnR
-        company_logo: 'https://rnrstorage.blob.core.windows.net/company-logos/e551c0bf-b751-4421-892b-13f99104260f.png'
-        cover_image: 'https://rnrstorage.blob.core.windows.net/company-cover-images/ab3dc0f5-4417-4b2e-a963-7a595025ea4f.jpg'
-        company_website_url: www.jobsrnr.com
-        company_website_protocol: 'https://'
-        company_description: 'JobsRnR was founded on the simple belief that peer-to-peer referrals represent the strongest form of endorsement. Our goal is to connect employers with qualified and talented job seekers, at lower costs and with greater efficiency.'
-        company_description_zh_tw: JobsRnR 是香港首個以賞金為基礎的工作推薦平台。在JobsRnR體系下，您可以透過"分享"個人網絡，推薦朋友到合適既工作以賺取賞金。JobsRnR是一個無論推薦更好工作的機會予朋友，抑或尋找著數機會都合適既平台。
-        company_description_zh: JobsRnR 是香港首个以赏金为基础的工作推荐平台。在JobsRnR体系下，您可以透过"分享"个人网络，推荐朋友到合适既工作以赚取赏金。 JobsRnR是一个无论推荐更好工作的机会予朋友，抑或寻找着数机会都合适既平台。
-        tags:
-          - id: 85
-            name: Marketing
-            name_tw: 市場推廣
-            name_zh: 市场推广
-          - id: 206
-            name: SEO
-            name_tw: SEO
-            name_zh: SEO
-          - id: 246
-            name: Digital Marketing
-            name_tw: 數碼營銷
-            name_zh: 数码营销
-        reward_condition: hired
-        industry_name: Information Technology (IT)
-        industry_name_zh: 资讯科技
-        industry_name_zh_tw: 資訊科技 (IT)
-        contract_type_name: Full-time
-        contract_type_name_zh: 全职
-        contract_type_name_zh_tw: 全職
-        city_name: Hong Kong
-        city_name_zh: 香港
-        city_name_zh_tw: 香港
-        city_hide_country: true
-        country_name: Hong Kong
-        country_name_zh: 香港
-        country_name_zh_tw: 香港
-        canonical_url: 'https://www.jobsrnr.com/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMgE5r'
-        canonical_url_zh_tw: 'https://www.jobsrnr.com/zh-tw/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMgE5r'
-        canonical_url_zh: 'https://www.jobsrnr.com/zh/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMgE5r'
     JobSearchResultResultsItemTagsItem:
       type: object
       properties:
@@ -381,6 +287,77 @@ components:
         referral_code:
           type: string
           description: 'Your referral code, if requested'
+      example:
+        hits: 1
+        results:
+          - id: 879
+            title: Content and Digital Marketing Specialist / Manager
+            industry_id: 3
+            contract_type_id: 1
+            description: |-
+              JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.
+
+              The Candidate will be in a position to make key decisions regarding all content pertaining to JobsRnR, with the primary goal of increasing traffic and profile.
+            salary_range: '[20000,30001)'
+            yrs_experience: '3.0'
+            seniority: middle
+            referrer_reward: 3000
+            candidate_reward: 0
+            reward_condition_id: 4
+            post_date: '2018-11-29T16:00:00.000Z'
+            slug: jobsrnr-content-and-digital-marketing-specialist-manager
+            status: open
+            meta_title: Content and Digital Marketing Specialist / Manager
+            meta_description: 'JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.'
+            meta_title_zh_tw: null
+            meta_description_zh_tw: null
+            meta_title_zh: null
+            meta_description_zh: null
+            featured_at: null
+            city_id: 1
+            is_anonymous: false
+            company_id: 35
+            company_name: JobsRnR
+            company_name_zh_tw: JobsRnR
+            company_name_zh: JobsRnR
+            company_logo: 'https://rnrstorage.blob.core.windows.net/company-logos/e551c0bf-b751-4421-892b-13f99104260f.png'
+            cover_image: 'https://rnrstorage.blob.core.windows.net/company-cover-images/ab3dc0f5-4417-4b2e-a963-7a595025ea4f.jpg'
+            company_website_url: www.jobsrnr.com
+            company_website_protocol: 'https://'
+            company_description: 'JobsRnR was founded on the simple belief that peer-to-peer referrals represent the strongest form of endorsement. Our goal is to connect employers with qualified and talented job seekers, at lower costs and with greater efficiency.'
+            company_description_zh_tw: JobsRnR 是香港首個以賞金為基礎的工作推薦平台。在JobsRnR體系下，您可以透過"分享"個人網絡，推薦朋友到合適既工作以賺取賞金。JobsRnR是一個無論推薦更好工作的機會予朋友，抑或尋找著數機會都合適既平台。
+            company_description_zh: JobsRnR 是香港首个以赏金为基础的工作推荐平台。在JobsRnR体系下，您可以透过"分享"个人网络，推荐朋友到合适既工作以赚取赏金。 JobsRnR是一个无论推荐更好工作的机会予朋友，抑或寻找着数机会都合适既平台。
+            tags:
+              - id: 85
+                name: Marketing
+                name_tw: 市場推廣
+                name_zh: 市场推广
+              - id: 206
+                name: SEO
+                name_tw: SEO
+                name_zh: SEO
+              - id: 246
+                name: Digital Marketing
+                name_tw: 數碼營銷
+                name_zh: 数码营销
+            reward_condition: hired
+            industry_name: Information Technology (IT)
+            industry_name_zh: 资讯科技
+            industry_name_zh_tw: 資訊科技 (IT)
+            contract_type_name: Full-time
+            contract_type_name_zh: 全职
+            contract_type_name_zh_tw: 全職
+            city_name: Hong Kong
+            city_name_zh: 香港
+            city_name_zh_tw: 香港
+            city_hide_country: true
+            country_name: Hong Kong
+            country_name_zh: 香港
+            country_name_zh_tw: 香港
+            canonical_url: 'https://www.jobsrnr.com/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMg'
+            canonical_url_zh_tw: 'https://www.jobsrnr.com/zh-tw/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMg'
+            canonical_url_zh: 'https://www.jobsrnr.com/zh/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMg'
+        referral_code: Xjp6XCUo5NM73mMqMg
   securitySchemes:
     api_key:
       type: apiKey
