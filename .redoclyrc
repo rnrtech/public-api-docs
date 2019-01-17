@@ -1,0 +1,7 @@
+specFileName: /Users/Andrew/Desktop/jobsrnr-public-api-production.json
+apiTitle: JobsRnR Public API
+splitSpec: false
+codeSamples: true
+swaggerUI: true
+travis: false
+oasVersion: 3.0.1
