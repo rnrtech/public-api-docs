@@ -1,0 +1,433 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "jobsrnr-public-api",
+    "version": "2019-01-17T07:14:09Z"
+  },
+  "servers": [
+    {
+      "url": "https://data.jobsrnr.com"
+    }
+  ],
+  "paths": {
+    "/jobs": {
+      "get": {
+        "description": "Get / Search open Jobs",
+        "parameters": [
+          {
+            "name": "rewardCondition",
+            "in": "query",
+            "description": "The ID of a Reward Condition. Currently there are only two: 4 for Hired and 5 for First Interview Completed.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Keywords to search for in the following fields of a Job: title, description, company_name, company_description, company_description_zh_tw, company_description_zh",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "referralCode",
+            "in": "query",
+            "description": "Fetch and include Referral Code in the canonical URLs",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "featured",
+            "in": "query",
+            "description": "Either true or false - denotes whether a Job is Featured or not.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "description": "ID(s) of tags that a Job must have.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "The ID of a City",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 10.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "seniority",
+            "in": "query",
+            "description": "String value one of the following: entry, middle, senior",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "industry",
+            "in": "query",
+            "description": "The ID of an Industry",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Job search results",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobSearchResult"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      },
+      "options": {
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Methods": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "Access-Control-Allow-Headers": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {}
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "JobSearchResultResultsItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique ID for this Job opening"
+          },
+          "title": {
+            "type": "string",
+            "description": "Title for this Job opening"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description for this Job Opening"
+          },
+          "salary_range": {
+            "type": "string",
+            "description": "A string representing the minimum and maximum salary range for this Job, with the following format: (17000, 25001], representing a range of 17,000 to 25,000. All values are integers in HKD, with the lowest unit of the currency being the dollar."
+          },
+          "yrs_experience": {
+            "type": "number",
+            "description": "Approximation of years of experienced required for this Job opening. Numeric type with a precision of 4 and scale of 1 - fractional values are possible (ex. 2.5 years experience)"
+          },
+          "seniority": {
+            "type": "string",
+            "description": "Seniority level of this Job opening. Possible values are 'entry', 'middle', and 'senior'",
+            "enum": [
+              "entry",
+              "middle",
+              "senior"
+            ]
+          },
+          "referrer_reward": {
+            "type": "integer",
+            "description": "Reward in HKD paid out to the Referrer if the referral was a success. Values are integers in HKD, with the lowest unit of the currency being the dollar."
+          },
+          "candidate_reward": {
+            "type": "integer",
+            "description": "Reward in HKD paid out to the Candidate if the application was a success. Values are integers in HKD, with the lowest unit of the currency being the dollar."
+          },
+          "reward_condition_id": {
+            "type": "integer",
+            "description": "ID of the Reward Condition for this Job opening"
+          },
+          "reward_condition": {
+            "type": "string",
+            "description": "Reward Condition for this Job opening. Possible values are 'hired' and 'first_interview_completed'",
+            "enum": [
+              "hired",
+              "first_interview_completed"
+            ]
+          },
+          "post_date": {
+            "type": "string",
+            "description": "Date when this Job opening was created",
+            "format": "date-time"
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL Slug for this Job opening"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status for this Job opening. Possible values are 'open', 'closed', and 'pending'. The Public API only returns Job openings that are open",
+            "enum": [
+              "open",
+              "closed",
+              "pending"
+            ]
+          },
+          "meta_title": {
+            "type": "string",
+            "description": "Meta Title for this Job opening, in English"
+          },
+          "meta_description": {
+            "type": "string",
+            "description": "Meta Description for this Job opening, in English"
+          },
+          "meta_title_zh_tw": {
+            "type": "string",
+            "description": "Optional Meta Title for this Job opening, in Traditional Chinese"
+          },
+          "meta_description_zh_tw": {
+            "type": "string",
+            "description": "Optional Meta Description for this Job opening, in Traditional Chinese"
+          },
+          "meta_title_zh": {
+            "type": "string",
+            "description": "Optional Meta Title for this Job opening, in Simplified Chinese"
+          },
+          "meta_description_zh": {
+            "type": "string",
+            "description": "Optional Meta Description for this Job opening, in Simplified Chinese"
+          },
+          "featured_at": {
+            "type": "string",
+            "description": "Timestamp indicating if this Job opening is a Featured Job opening. A job opening is a Featured opening if the timestamp is present",
+            "format": "date-time"
+          },
+          "cover_image": {
+            "type": "string",
+            "description": "URL of the Cover Image for this Job opening"
+          },
+          "is_anonymous": {
+            "type": "boolean",
+            "description": "Boolean indicating whether this Job opening is anonymous or not. If true, Company Name and Description fields will be empty."
+          },
+          "company_id": {
+            "type": "integer",
+            "description": "ID of the Company that owns this Job opening"
+          },
+          "company_name": {
+            "type": "string",
+            "description": "Name of the Company that owns this Job opening, in English"
+          },
+          "company_name_zh_tw": {
+            "type": "string",
+            "description": "Optional name of the Company that owns this Job opening, in Traditional Chinese"
+          },
+          "company_name_zh": {
+            "type": "string",
+            "description": "Optional name of the Company that owns this Job opening, in Simplified Chinese"
+          },
+          "company_logo": {
+            "type": "string",
+            "description": "URL of the Logo for the Company that owns this Job opening"
+          },
+          "company_website_url": {
+            "type": "string",
+            "description": "URL of the Company that owns this Job opening, without the protocol"
+          },
+          "company_website_protocol": {
+            "type": "string",
+            "description": "Preferred protocol for the Website URL of the Company that owns this Job. Possible values are http:// or https://",
+            "enum": [
+              "http://",
+              "https://"
+            ]
+          },
+          "company_description": {
+            "type": "string",
+            "description": "Description of the Company that owns this Job opening, in English"
+          },
+          "company_description_zh_tw": {
+            "type": "string",
+            "description": "Optional Description of the Company that owns this Job opening, in Traditional Chinese"
+          },
+          "company_description_zh": {
+            "type": "string",
+            "description": "Optional Description of the Company that owns this Job opening, in Simplified Chinese"
+          },
+          "tags": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "List of Tags associated with this Job opening",
+            "items": {
+              "$ref": "#/components/schemas/JobSearchResultResultsItemTagsItem"
+            }
+          },
+          "industry_id": {
+            "type": "integer",
+            "description": "ID for the Industry this Job opening belongs to"
+          },
+          "industry_name": {
+            "type": "string",
+            "description": "Name for the Industry this Job opening belongs to, in English"
+          },
+          "industry_name_zh_tw": {
+            "type": "string",
+            "description": "Name for the Industry this Job opening belongs to, in Traditional Chinese"
+          },
+          "industry_name_zh": {
+            "type": "string",
+            "description": "Name for the Industry this Job opening belongs to, in Simplified Chinese"
+          },
+          "contract_type_id": {
+            "type": "integer",
+            "description": "Contract Type ID for this Job Opening"
+          },
+          "contract_type_name": {
+            "type": "string",
+            "description": "Contract Type for this Job opening, in English"
+          },
+          "contract_type_name_zh_tw": {
+            "type": "string",
+            "description": "Contract Type for this Job opening, in Traditional Chinese"
+          },
+          "contract_type_name_zh": {
+            "type": "string",
+            "description": "Contract Type for this Job opening, in Simplified Chinese"
+          },
+          "city_id": {
+            "type": "integer",
+            "description": "ID of the City where this Job opening is located"
+          },
+          "city_name": {
+            "type": "string",
+            "description": "Name of the City this Job opening is located in, in English"
+          },
+          "city_name_zh_tw": {
+            "type": "string",
+            "description": "Name of the City this Job opening is located in, in Traditional Chinese"
+          },
+          "city_name_zh": {
+            "type": "string",
+            "description": "Name of the City this Job opening is located in, in Simplified Chinese"
+          },
+          "city_hide_country": {
+            "type": "boolean",
+            "description": "Boolean to indicate whether you should append the country after the city. Purely aesthetic. Example: Hong Kong instead of Hong Kong, China or Singapore instead of Singapore, Singapore"
+          },
+          "country_name": {
+            "type": "string",
+            "description": "Name of the Country this Job opening is located in, in English"
+          },
+          "country_name_zh_tw": {
+            "type": "string",
+            "description": "Name of the Country this Job opening is located in, in Traditional Chinese"
+          },
+          "country_name_zh": {
+            "type": "string",
+            "description": "Name of the Country this Job opening is located in, in Simplified Chinese"
+          },
+          "canonical_url": {
+            "type": "string",
+            "description": "Canonical URL to this Job opening in English, with Referral Code attached in query if requested"
+          },
+          "canonical_url_zh_tw": {
+            "type": "string",
+            "description": "Canonical URL to this Job opening in Traditional Chinese, with Referral Code attached in query if requested"
+          },
+          "canonical_url_zh": {
+            "type": "string",
+            "description": "Canonical URL to this Job opening in Simplified Chinese, with Referral Code attached in query if requested"
+          }
+        }
+      },
+      "JobSearchResultResultsItemTagsItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID for this Tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for this Tag, in English"
+          },
+          "name_zh_tw": {
+            "type": "string",
+            "description": "Name for this Tag, in Traditional Chinese"
+          },
+          "name_zh": {
+            "type": "string",
+            "description": "Name for this Tag, in Simplified Chinese"
+          }
+        }
+      },
+      "JobSearchResult": {
+        "title": "Job Search Result Schema",
+        "type": "object",
+        "properties": {
+          "hits": {
+            "type": "integer",
+            "description": "Number of matching results"
+          },
+          "results": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "List of Jobs returned for this page",
+            "items": {
+              "$ref": "#/components/schemas/JobSearchResultResultsItem"
+            }
+          },
+          "referral_code": {
+            "type": "string",
+            "description": "Your referral code, if requested"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "api_key": {
+        "type": "apiKey",
+        "name": "x-api-key",
+        "in": "header"
+      }
+    }
+  }
+}
