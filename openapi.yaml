@@ -1,8 +1,8 @@
 openapi: 3.0.1
 info:
-  title: jobsrnr-public-api
+  title: JobsRnR Public API
   version: 0.1.2
-  description: '[JobsRnR](https://www.jobsrnr.com) Public API'
+  description: '[JobsRnR](https://www.jobsrnr.com) Public API for searching Job openings and obtaining Job referral URLs'
 servers:
   - url: 'https://data.jobsrnr.com'
 paths:
