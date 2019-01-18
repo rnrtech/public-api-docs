@@ -90,9 +90,12 @@ components:
         description:
           type: string
           description: A description for this Job Opening
-        salary_range:
-          type: string
-          description: 'A string representing the minimum and maximum salary range for this Job, with the following format: (17000, 25001], representing a range of 17,000 to 25,000. All values are integers in HKD, with the lowest unit of the currency being the dollar.'
+        min_salary_range:
+          type: integer
+          description: 'Lower bound range of Salary offered for this Job opening. All values are integers in HKD, with the lowest unit of the currency being the dollar.'
+        max_salary_range:
+          type: integer
+          description: 'Upper bound range of Salary offered for this Job opening. All values are integers in HKD, with the lowest unit of the currency being the dollar.'
         yrs_experience:
           type: number
           description: Approximation of years of experienced required for this Job opening. Numeric type with a precision of 4 and scale of 1 - fractional values are possible (ex. 2.5 years experience)
@@ -159,28 +162,28 @@ components:
           description: URL of the Cover Image for this Job opening
         is_anonymous:
           type: boolean
-          description: 'Boolean indicating whether this Job opening is anonymous or not. If true, Company Name and Description fields will be empty.'
+          description: 'Boolean indicating whether this Job opening is anonymous or not. If true, Company related fields will be set to null.'
         company_id:
           type: integer
-          description: ID of the Company that owns this Job opening
+          description: ID of the Company hiring for this Job opening
         company_name:
           type: string
-          description: 'Name of the Company that owns this Job opening, in English'
+          description: 'Name of the Company hiring for this Job opening, in English'
         company_name_zh_tw:
           type: string
-          description: 'Optional name of the Company that owns this Job opening, in Traditional Chinese'
+          description: 'Optional name of the Company hiring for this Job opening, in Traditional Chinese'
         company_name_zh:
           type: string
-          description: 'Optional name of the Company that owns this Job opening, in Simplified Chinese'
+          description: 'Optional name of the Company hiring for this Job opening, in Simplified Chinese'
         company_logo:
           type: string
-          description: URL of the Logo for the Company that owns this Job opening
+          description: URL of the Logo for the Company hiring for this Job opening
         company_website_url:
           type: string
-          description: 'URL of the Company that owns this Job opening, without the protocol'
+          description: 'URL of the Company hiring for this Job opening, without the protocol'
         company_website_protocol:
           type: string
-          description: 'Preferred protocol for the Website URL of the Company that owns this Job. Possible values are http:// or https://'
+          description: 'Preferred protocol for the Website URL of the Company hiring for this Job. Possible values are http:// or https://'
           enum:
             - 'http://'
             - 'https://'
@@ -189,10 +192,10 @@ components:
           description: 'Description of the Company that owns this Job opening, in English'
         company_description_zh_tw:
           type: string
-          description: 'Optional Description of the Company that owns this Job opening, in Traditional Chinese'
+          description: 'Optional Description of the Company hiring for this Job opening, in Traditional Chinese'
         company_description_zh:
           type: string
-          description: 'Optional Description of the Company that owns this Job opening, in Simplified Chinese'
+          description: 'Optional Description of the Company hiring for this Job opening, in Simplified Chinese'
         tags:
           uniqueItems: true
           type: array
@@ -298,7 +301,8 @@ components:
               JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.
 
               The Candidate will be in a position to make key decisions regarding all content pertaining to JobsRnR, with the primary goal of increasing traffic and profile.
-            salary_range: '[20000,30001)'
+            min_salary_range: 20000
+            max_salary_range: 30000
             yrs_experience: '3.0'
             seniority: middle
             referrer_reward: 3000
