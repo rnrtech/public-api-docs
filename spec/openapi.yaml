@@ -229,35 +229,35 @@
           },
           "is_anonymous": {
             "type": "boolean",
-            "description": "Boolean indicating whether this Job opening is anonymous or not. If true, Company Name and Description fields will be empty."
+            "description": "Boolean indicating whether this Job opening is anonymous or not. If true, Company related fields will be set to null."
           },
           "company_id": {
             "type": "integer",
-            "description": "ID of the Company that owns this Job opening"
+            "description": "ID of the Company hiring for this Job opening"
           },
           "company_name": {
             "type": "string",
-            "description": "Name of the Company that owns this Job opening, in English"
+            "description": "Name of the Company hiring for this Job opening, in English"
           },
           "company_name_zh_tw": {
             "type": "string",
-            "description": "Optional name of the Company that owns this Job opening, in Traditional Chinese"
+            "description": "Optional name of the Company hiring for this Job opening, in Traditional Chinese"
           },
           "company_name_zh": {
             "type": "string",
-            "description": "Optional name of the Company that owns this Job opening, in Simplified Chinese"
+            "description": "Optional name of the Company hiring for this Job opening, in Simplified Chinese"
           },
           "company_logo": {
             "type": "string",
-            "description": "URL of the Logo for the Company that owns this Job opening"
+            "description": "URL of the Logo for the Company hiring for this Job opening"
           },
           "company_website_url": {
             "type": "string",
-            "description": "URL of the Company that owns this Job opening, without the protocol"
+            "description": "URL of the Company hiring for this Job opening, without the protocol"
           },
           "company_website_protocol": {
             "type": "string",
-            "description": "Preferred protocol for the Website URL of the Company that owns this Job. Possible values are http:// or https://",
+            "description": "Preferred protocol for the Website URL of the Company hiring for this Job. Possible values are http:// or https://",
             "enum": [
               "http://",
               "https://"
@@ -269,11 +269,11 @@
           },
           "company_description_zh_tw": {
             "type": "string",
-            "description": "Optional Description of the Company that owns this Job opening, in Traditional Chinese"
+            "description": "Optional Description of the Company hiring for this Job opening, in Traditional Chinese"
           },
           "company_description_zh": {
             "type": "string",
-            "description": "Optional Description of the Company that owns this Job opening, in Simplified Chinese"
+            "description": "Optional Description of the Company hiring for this Job opening, in Simplified Chinese"
           },
           "tags": {
             "uniqueItems": true,
