@@ -139,9 +139,13 @@
             "type": "string",
             "description": "A description for this Job Opening"
           },
-          "salary_range": {
-            "type": "string",
-            "description": "A string representing the minimum and maximum salary range for this Job, with the following format: (17000, 25001], representing a range of 17,000 to 25,000. All values are integers in HKD, with the lowest unit of the currency being the dollar."
+          "min_salary_range": {
+            "type": "integer",
+            "description": "Lower bound range of Salary offered for this Job opening. All values are integers in HKD, with the lowest unit of the currency being the dollar."
+          },
+          "max_salary_range": {
+            "type": "integer",
+            "description": "Upper bound range of Salary offered for this Job opening. All values are integers in HKD, with the lowest unit of the currency being the dollar."
           },
           "yrs_experience": {
             "type": "number",
@@ -412,7 +416,8 @@
               "industry_id": 3,
               "contract_type_id": 1,
               "description": "JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.\n\nThe Candidate will be in a position to make key decisions regarding all content pertaining to JobsRnR, with the primary goal of increasing traffic and profile.",
-              "salary_range": "[20000,30001)",
+              "min_salary_range": 20000,
+              "max_salary_range": 30000,
               "yrs_experience": "3.0",
               "seniority": "middle",
               "referrer_reward": 3000,
