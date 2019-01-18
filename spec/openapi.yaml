@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "JobsRnR Public API",
-    "version": "0.1.2",
-    "description": "[JobsRnR](https://www.jobsrnr.com) Public API for searching Job openings and obtaining Job referral URLs"
+    "version": "0.1.3",
+    "description": "[JobsRnR](https://www.jobsrnr.com) Public API for searching Job openings and obtaining Job referral URLs. Please contact us at JobsRnR in order to retrieve your API Key."
   },
   "servers": [
     {
