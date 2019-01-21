@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: JobsRnR Public API
-  version: 0.2.0
+  version: 0.3.3
   description: '[JobsRnR](https://www.jobsrnr.com) Public API for searching Tags, Industries and Job openings and obtaining Job referral URLs. Please contact us at JobsRnR in order to retrieve your API Key.'
 servers:
   - url: 'https://data.jobsrnr.com'
@@ -70,7 +70,7 @@ paths:
         - api_key: []
   /jobs:
     get:
-      description: Search Jobs openings
+      description: 'Search Jobs openings. Results are sorted by score and post_date, descending.'
       parameters:
         - name: rewardCondition
           in: query
@@ -396,15 +396,15 @@ components:
             tags:
               - id: 85
                 name: Marketing
-                name_tw: 市場推廣
+                name_zh_tw: 市場推廣
                 name_zh: 市场推广
               - id: 206
                 name: SEO
-                name_tw: SEO
+                name_zh_tw: SEO
                 name_zh: SEO
               - id: 246
                 name: Digital Marketing
-                name_tw: 數碼營銷
+                name_zh_tw: 數碼營銷
                 name_zh: 数码营销
             reward_condition: hired
             industry_name: Information Technology (IT)
