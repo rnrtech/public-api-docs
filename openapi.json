@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "JobsRnR Public API",
-    "version": "0.1.3",
-    "description": "[JobsRnR](https://www.jobsrnr.com) Public API for searching Job openings and obtaining Job referral URLs. Please contact us at JobsRnR in order to retrieve your API Key."
+    "version": "0.2.0",
+    "description": "[JobsRnR](https://www.jobsrnr.com) Public API for searching Tags, Industries and Job openings and obtaining Job referral URLs. Please contact us at JobsRnR in order to retrieve your API Key."
   },
   "servers": [
     {
@@ -11,6 +11,112 @@
     }
   ],
   "paths": {
+    "/tags": {
+      "get": {
+        "description": "Search Tags. Results are sorted by ID, ascending.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Keywords to search for in the following fields of a Tag: name, name_zh_tw, name_zh",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 50.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Tags search results",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagSearchResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - missing API Key in x-api-key Header"
+          },
+          "500": {
+            "description": "Server Error - Unable to Search Tags"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/industries": {
+      "get": {
+        "description": "Search Industries. Results are sorted by ID, ascending.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Keywords to search for in the following fields of an Industry: name, name_zh_tw, name_zh",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 50.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Industries search results",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IndustrySearchResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - missing API Key in x-api-key Header"
+          },
+          "500": {
+            "description": "Server Error - Unable to Search Industries"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/jobs": {
       "get": {
         "description": "Search Jobs openings",
@@ -490,6 +596,113 @@
             }
           ],
           "referral_code": "Xjp6XCUo5NM73mMqMg"
+        }
+      },
+      "TagSearchResultItem": {
+        "title": "Tag Search Result Item Schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique ID for this Tag"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for this Tag, in English"
+          },
+          "name_zh_tw": {
+            "type": "string",
+            "description": "Name for this Tag, in Traditional Chinese"
+          },
+          "name_zh": {
+            "type": "string",
+            "description": "Name for this Tag, in Simplified Chinese"
+          },
+          "featured_at": {
+            "type": "string",
+            "description": "Timestamp indicating whether this Tag is featured"
+          }
+        }
+      },
+      "TagSearchResult": {
+        "title": "Tag Search Result Schema",
+        "type": "object",
+        "properties": {
+          "hits": {
+            "type": "integer",
+            "description": "Number of matching results"
+          },
+          "results": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "List of Tags",
+            "items": {
+              "$ref": "#/components/schemas/TagSearchResultItem"
+            }
+          }
+        },
+        "example": {
+          "hits": 1,
+          "results": [
+            {
+              "id": 18,
+              "name": "Software Engineer",
+              "name_zh": "软件工程师",
+              "name_zh_tw": "軟件工程師",
+              "featured_at": null
+            }
+          ]
+        }
+      },
+      "IndustrySearchResultItem": {
+        "title": "Industry Search Result Item Schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique ID for this Industry"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for this Industry, in English"
+          },
+          "name_zh_tw": {
+            "type": "string",
+            "description": "Name for this Industry, in Traditional Chinese"
+          },
+          "name_zh": {
+            "type": "string",
+            "description": "Name for this Industry, in Simplified Chinese"
+          }
+        }
+      },
+      "IndustrySearchResult": {
+        "title": "Industry Search Result Schema",
+        "type": "object",
+        "properties": {
+          "hits": {
+            "type": "integer",
+            "description": "Number of matching results"
+          },
+          "results": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "List of Industries",
+            "items": {
+              "$ref": "#/components/schemas/IndustrySearchResultItem"
+            }
+          }
+        },
+        "example": {
+          "hits": 1,
+          "results": [
+            {
+              "id": 1,
+              "name": "Banking",
+              "name_zh": "银行",
+              "name_zh_tw": "銀行"
+            }
+          ]
         }
       }
     },
