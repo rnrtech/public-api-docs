@@ -23,6 +23,9 @@ jobs:
       - image: circleci/node:10.1.0
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "fa:1c:7e:90:46:d8:91:4e:ca:7a:a3:94:55:37:47:77"
       - run:
           name: Install Dependencies
           command: npm install
