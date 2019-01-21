@@ -1,6 +1,6 @@
 {
-  "name": "jobsrnr-public-api",
-  "version": "1.0.0",
+  "name": "public-api-docs",
+  "version": "0.3.0",
   "dependencies": {
     "swagger-repo": "^2.0.0-rc.10"
   },
