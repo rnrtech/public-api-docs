@@ -641,10 +641,11 @@
           "hits": 1,
           "results": [
             {
-              "id": 10,
-              "name": "Tag",
-              "name_zh_tw": "Tag",
-              "name_zh": "Tag"
+                "id": 18,
+                "name": "Software Engineer",
+                "name_zh": "软件工程师",
+                "name_zh_tw": "軟件工程師",
+                "featured_at": null
             }
           ]
         }
@@ -692,10 +693,10 @@
           "hits": 1,
           "results": [
             {
-              "id": 10,
-              "name": "Industry",
-              "name_zh_tw": "Industry",
-              "name_zh": "Industry"
+                "id": 1,
+                "name": "Banking",
+                "name_zh": "银行",
+                "name_zh_tw": "銀行"
             }
           ]
         }
