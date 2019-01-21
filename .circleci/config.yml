@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run:
           name: Git Config
-          commands: |
+          command: |
             git config user.email "ci-build@circleci.com"
             git config user.name "ci-build"
       - add_ssh_keys:
