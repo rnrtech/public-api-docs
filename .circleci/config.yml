@@ -2,10 +2,12 @@ version: 2
 
 jobs:
   test:
-    branches:
-      - ignore: gh-pages
     docker:
       - image: circleci/node:10.1.0
+    branches:
+      ignore:
+        - master
+        - gh-pages
     steps:
       - checkout
       - restore_cache:
