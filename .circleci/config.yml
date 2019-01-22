@@ -48,7 +48,9 @@ workflows:
       - test:
           filters:
             branches:
-              ignore: master
+              ignore:
+                - master
+                - gh-pages
             tags:
               ignore: /^release-.*/
   build_deploy_production:
