@@ -1,14 +1,28 @@
 openapi: 3.0.1
 info:
   title: JobsRnR Public API
-  version: 0.3.4
-  description: '[JobsRnR](https://www.jobsrnr.com) Public API for searching Tags, Industries and Job openings and obtaining Job referral URLs. Please contact us at JobsRnR in order to retrieve your API Key.'
+  version: 0.3.5
+  description: |2-
+     [JobsRnR](https://www.jobsrnr.com) Public API is a RESTful API built over HTTP. This Public API allows searching of Tags, Industries and Job openings, in addition to obtaining canoncial URLs for Job openings with Referral Codes.
+    # API Key
+    Please contact us at JobsRnR in order to retrieve your API Key.
+    # Throttling and Rate Limiting
+    The API has a throttling mechanism, so we encourage some sort of caching. Throttling and Rate Limiting details:
+    * Rate - 5 requests per second
+    * Burst - 600 requests
+    * Quota - 20,000 requests per month starting on the 1st day
+    As we develop this API, we may start adjusting (relaxing) these restrictions.
+    # Current Status and Feedback
+    This API is still in its early stages, so there may still be some breaking changes. Please feel free to reach out to us at [JobsRnR](https://www.jobsrnr.com) with any feedback so that we can improve on this API.
+    # Terms and Conditions
+    By using this API, you agree to the [API Terms of Services](https://www.jobsrnr.com/api-terms). 
 servers:
   - url: 'https://data.jobsrnr.com'
 paths:
   /tags:
     get:
-      description: 'Search Tags. Results are sorted by ID, ascending.'
+      summary: Search Tags
+      description: 'Search Tags with results sorted by ID, ascending.'
       parameters:
         - name: query
           in: query
@@ -39,7 +53,8 @@ paths:
         - api_key: []
   /industries:
     get:
-      description: 'Search Industries. Results are sorted by ID, ascending.'
+      summary: Search Industries
+      description: 'Search Industries with results sorted by ID, ascending.'
       parameters:
         - name: query
           in: query
@@ -70,7 +85,8 @@ paths:
         - api_key: []
   /jobs:
     get:
-      description: 'Search Jobs openings. Results are sorted by score and post_date, descending.'
+      summary: Search Job openings
+      description: 'Search Job openings with results sorted by score and post_date, descending. All Job openings returned by this API are ''open''.'
       parameters:
         - name: rewardCondition
           in: query
