@@ -19,8 +19,6 @@ jobs:
           paths:
             - ~/.cache/node-cache
   deploy_production:
-    branches:
-      - ignore: gh-pages
     docker:
       - image: circleci/node:10.1.0
     steps:
