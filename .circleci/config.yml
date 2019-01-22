@@ -4,10 +4,6 @@ jobs:
   test:
     docker:
       - image: circleci/node:10.1.0
-    branches:
-      ignore:
-        - master
-        - gh-pages
     steps:
       - checkout
       - restore_cache:
