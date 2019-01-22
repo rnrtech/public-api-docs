@@ -140,7 +140,7 @@
           {
             "name": "referralCode",
             "in": "query",
-            "description": "Fetch and include Referral Code in the canonical URLs",
+            "description": "Setting this to 'true' will also fetch and include your Referral Code in the canonical URLs, as well as the search result object",
             "schema": {
               "type": "string"
             }
