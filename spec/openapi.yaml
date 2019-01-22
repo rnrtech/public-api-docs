@@ -13,7 +13,8 @@
   "paths": {
     "/tags": {
       "get": {
-        "description": "Search Tags. Results are sorted by ID, ascending.",
+        "summary": "Search Tags",
+        "description": "Search Tags with results sorted by ID, ascending.",
         "parameters": [
           {
             "name": "query",
@@ -66,7 +67,8 @@
     },
     "/industries": {
       "get": {
-        "description": "Search Industries. Results are sorted by ID, ascending.",
+        "summary": "Search Industries",
+        "description": "Search Industries with results sorted by ID, ascending.",
         "parameters": [
           {
             "name": "query",
@@ -119,7 +121,8 @@
     },
     "/jobs": {
       "get": {
-        "description": "Search Jobs openings. Results are sorted by score and post_date, descending.",
+        "summary": "Search Job openings",
+        "description": "Search Job openings with results sorted by score and post_date, descending. All Job openings returned by this API are 'open'.",
         "parameters": [
           {
             "name": "rewardCondition",
