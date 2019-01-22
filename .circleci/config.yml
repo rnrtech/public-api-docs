@@ -2,6 +2,8 @@ version: 2
 
 jobs:
   test:
+    branches:
+      - ignore: gh-pages
     docker:
       - image: circleci/node:10.1.0
     steps:
@@ -19,6 +21,8 @@ jobs:
           paths:
             - ~/.cache/node-cache
   deploy_production:
+    branches:
+      - ignore: gh-pages
     docker:
       - image: circleci/node:10.1.0
     steps:
