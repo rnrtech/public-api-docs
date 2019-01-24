@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: JobsRnR Public API
-  version: 0.3.5
+  version: 0.3.6
   description: |2-
      [JobsRnR](https://www.jobsrnr.com) Public API is a RESTful API built over HTTP. This Public API allows searching of Tags, Industries and Job openings, in addition to obtaining canoncial URLs for Job openings with Referral Codes.
     # API Key
@@ -90,9 +90,12 @@ paths:
       parameters:
         - name: rewardCondition
           in: query
-          description: 'The ID of a Reward Condition. Currently there are only two: 4 for Hired and 5 for First Interview Completed.'
+          description: String value of either hired or first_interview_completed.
           schema:
             type: string
+            enum:
+              - hired
+              - first_interview_completed
         - name: query
           in: query
           description: 'Keywords to search for in the following fields of a Job: title, description, company_name, company_description, company_description_zh_tw, company_description_zh'

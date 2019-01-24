@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "JobsRnR Public API",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "description": " [JobsRnR](https://www.jobsrnr.com) Public API is a RESTful API built over HTTP. This Public API allows searching of Tags, Industries and Job openings, in addition to obtaining canoncial URLs for Job openings with Referral Codes.\n# API Key\nPlease contact us at JobsRnR in order to retrieve your API Key.\n# Throttling and Rate Limiting\nThe API has a throttling mechanism, so we encourage some sort of caching. Throttling and Rate Limiting details:\n* Rate - 5 requests per second\n* Burst - 600 requests\n* Quota - 20,000 requests per month starting on the 1st day\nAs we develop this API, we may start adjusting (relaxing) these restrictions.\n# Current Status and Feedback\nThis API is still in its early stages, so there may still be some breaking changes. Please feel free to reach out to us at [JobsRnR](https://www.jobsrnr.com) with any feedback so that we can improve on this API.\n# Terms and Conditions\nBy using this API, you agree to the [API Terms of Services](https://www.jobsrnr.com/api-terms). "
   },
   "servers": [
@@ -127,9 +127,13 @@
           {
             "name": "rewardCondition",
             "in": "query",
-            "description": "The ID of a Reward Condition. Currently there are only two: 4 for Hired and 5 for First Interview Completed.",
+            "description": "String value of either hired or first_interview_completed.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "hired",
+                "first_interview_completed"
+              ]
             }
           },
           {
