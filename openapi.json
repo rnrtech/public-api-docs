@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "JobsRnR Public API",
-    "version": "0.3.6",
+    "version": "0.4.0",
     "description": " [JobsRnR](https://www.jobsrnr.com) Public API is a RESTful API built over HTTP. This Public API allows searching of Tags, Industries and Job openings, in addition to obtaining canoncial URLs for Job openings with Referral Codes.\n# API Key\nPlease contact us at JobsRnR in order to retrieve your API Key.\n# Throttling and Rate Limiting\nThe API has a throttling mechanism, so we encourage some sort of caching. Throttling and Rate Limiting details:\n* Rate - 5 requests per second\n* Burst - 600 requests\n* Quota - 20,000 requests per month starting on the 1st day\nAs we develop this API, we may start adjusting (relaxing) these restrictions.\n# Current Status and Feedback\nThis API is still in its early stages, so there may still be some breaking changes. Please feel free to reach out to us at [JobsRnR](https://www.jobsrnr.com) with any feedback so that we can improve on this API.\n# Terms and Conditions\nBy using this API, you agree to the [API Terms of Services](https://www.jobsrnr.com/api-terms). "
   },
   "servers": [
@@ -229,6 +229,63 @@
           },
           "500": {
             "description": "Server Error - Unable to Search Jobs"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
+    "/cities": {
+      "get": {
+        "summary": "Search Cities",
+        "description": "Search Cities with results sorted by ID, ascending.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Keywords to search for in the following fields of a City: name, name_zh_tw, name_zh, country_name, country_name_zh_tw, country_name_zh",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withJobs",
+            "in": "query",
+            "description": "Set to 'true' in order return Cities with Job openings only",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Cities search results",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CitySearchResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - missing API Key in x-api-key Header"
+          },
+          "500": {
+            "description": "Server Error - Unable to Search Cities"
           }
         },
         "security": [
@@ -708,6 +765,83 @@
               "name": "Banking",
               "name_zh": "银行",
               "name_zh_tw": "銀行"
+            }
+          ]
+        }
+      },
+      "CitySearchResultItem": {
+        "title": "City Search Result Item Schema",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique ID for this City"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for this City, in English"
+          },
+          "name_zh_tw": {
+            "type": "string",
+            "description": "Name for this City, in Traditional Chinese"
+          },
+          "name_zh": {
+            "type": "string",
+            "description": "Name for this City, in Simplified Chinese"
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL slug for this City"
+          },
+          "hide_country": {
+            "type": "boolean",
+            "description": "Boolean indicating whether to not append City. Purely aesthetic. For example - Singapore instead of Singapore, Singapore."
+          },
+          "country_name": {
+            "type": "string",
+            "description": "Name for the Country this City belongs to, in English"
+          },
+          "country_name_zh_tw": {
+            "type": "string",
+            "description": "Name for the Country this City belongs to, in Traditional Chinese"
+          },
+          "country_name_zh": {
+            "type": "string",
+            "description": "Name for the Country this City belongs to, in Simplified Chinese"
+          }
+        }
+      },
+      "CitySearchResult": {
+        "title": "City Search Result Schema",
+        "type": "object",
+        "properties": {
+          "hits": {
+            "type": "integer",
+            "description": "Number of matching results"
+          },
+          "results": {
+            "uniqueItems": true,
+            "type": "array",
+            "description": "List of Cities",
+            "items": {
+              "$ref": "#/components/schemas/CitySearchResultItem"
+            }
+          }
+        },
+        "example": {
+          "hits": 1,
+          "results": [
+            {
+              "id": 1,
+              "country_id": 1,
+              "name": "Hong Kong",
+              "name_zh": "香港",
+              "name_zh_tw": "香港",
+              "slug": "hong-kong",
+              "hide_country": true,
+              "country_name": "Hong Kong",
+              "country_name_zh": "香港",
+              "country_name_zh_tw": "香港"
             }
           ]
         }
