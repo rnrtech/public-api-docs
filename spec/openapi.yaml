@@ -275,7 +275,7 @@
           {
             "name": "withJobs",
             "in": "query",
-            "description": "Set to 'true' in order return Cities with Job openings only",
+            "description": "Set to 'true' in order to return Cities with Job openings only",
             "schema": {
               "type": "string",
               "enum": ["true"]
