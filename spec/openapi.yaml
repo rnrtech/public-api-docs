@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "JobsRnR Public API",
-    "version": "0.4.0",
+    "version": "0.4.1",
     "description": "
       [JobsRnR](https://www.jobsrnr.com) Public API is a RESTful API built over HTTP.
       This Public API allows searching of Tags, Industries and Job openings, in addition to obtaining canoncial URLs for Job openings with Referral Codes.
