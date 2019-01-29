@@ -1,0 +1,63 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10.1.0
+    steps:
+      - checkout
+      - restore_cache:
+          key: node-cache-{{ checksum "package-lock.json" }}
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Validate
+          command: npm test
+      - save_cache:
+          key: node-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.cache/node-cache
+  deploy_production:
+    docker:
+      - image: circleci/node:10.1.0
+    steps:
+      - checkout
+      - run:
+          name: Git Config
+          command: |
+            git config user.email "ci-build@circleci.com"
+            git config user.name "ci-build"
+      - add_ssh_keys:
+          fingerprints:
+            - "fa:1c:7e:90:46:d8:91:4e:ca:7a:a3:94:55:37:47:77"
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: Build
+          command: npm run build
+      - run:
+          name: Deploy
+          command: npm run gh-pages
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test:
+          filters:
+            branches:
+              ignore:
+                - master
+                - gh-pages
+            tags:
+              ignore: /^release-.*/
+  build_deploy_production:
+    jobs:
+      - deploy_production:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^release-.*/
