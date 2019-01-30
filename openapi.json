@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "JobsRnR Public API",
-    "version": "0.4.1",
+    "version": "0.5.0",
     "description": " [JobsRnR](https://www.jobsrnr.com) Public API is a RESTful API built over HTTP. This Public API allows searching of Tags, Industries and Job openings, in addition to obtaining canoncial URLs for Job openings with Referral Codes.\n# API Key\nPlease contact us at JobsRnR in order to retrieve your API Key.\n# Throttling and Rate Limiting\nThe API has a throttling mechanism, so we encourage some sort of caching. Throttling and Rate Limiting details:\n* Rate - 5 requests per second\n* Burst - 600 requests\n* Quota - 20,000 requests per month starting on the 1st day\nAs we develop this API, we may start adjusting (relaxing) these restrictions.\n# Current Status and Feedback\nThis API is still in its early stages, so there may still be some breaking changes. Please feel free to reach out to us at [JobsRnR](https://www.jobsrnr.com) with any feedback so that we can improve on this API.\n# Terms and Conditions\nBy using this API, you agree to the [API Terms of Services](https://www.jobsrnr.com/api-terms). "
   },
   "servers": [
@@ -149,7 +149,10 @@
             "in": "query",
             "description": "Setting this to 'true' will also fetch and include your Referral Code in the canonical URLs, as well as the search result object",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "true"
+              ]
             }
           },
           {
@@ -238,6 +241,67 @@
         ]
       }
     },
+    "/jobs/{id}": {
+      "get": {
+        "summary": "Get Job opening",
+        "description": "Get Job opening by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Numeric ID of the Job opening to get",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "referralCode",
+            "in": "query",
+            "description": "Setting this to 'true' will also fetch and include your Referral Code in the canonical URLs, as well as the result object",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Job result",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetJobResult"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden - missing API Key in x-api-key Header"
+          },
+          "404": {
+            "description": "Unable to find Job opening with this ID"
+          },
+          "500": {
+            "description": "Server Error - Unable to Get Job"
+          }
+        },
+        "security": [
+          {
+            "api_key": []
+          }
+        ]
+      }
+    },
     "/cities": {
       "get": {
         "summary": "Search Cities",
@@ -298,7 +362,7 @@
   },
   "components": {
     "schemas": {
-      "JobSearchResultResultsItem": {
+      "Job": {
         "type": "object",
         "properties": {
           "id": {
@@ -458,7 +522,7 @@
             "type": "array",
             "description": "List of Tags associated with this Job opening",
             "items": {
-              "$ref": "#/components/schemas/JobSearchResultResultsItemTagsItem"
+              "$ref": "#/components/schemas/JobTag"
             }
           },
           "industry_id": {
@@ -539,7 +603,7 @@
           }
         }
       },
-      "JobSearchResultResultsItemTagsItem": {
+      "JobTag": {
         "type": "object",
         "properties": {
           "id": {
@@ -560,6 +624,101 @@
           }
         }
       },
+      "GetJobResult": {
+        "title": "Get Job Result Schema",
+        "type": "object",
+        "properties": {
+          "result": {
+            "uniqueItems": true,
+            "type": "object",
+            "description": "Job opening returned given the ID",
+            "items": {
+              "$ref": "#/components/schemas/Job"
+            }
+          },
+          "referral_code": {
+            "type": "string",
+            "description": "Your referral code, if requested"
+          }
+        },
+        "example": {
+          "result": {
+            "id": 879,
+            "title": "Content and Digital Marketing Specialist / Manager",
+            "industry_id": 3,
+            "contract_type_id": 1,
+            "description": "JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.\n\nThe Candidate will be in a position to make key decisions regarding all content pertaining to JobsRnR, with the primary goal of increasing traffic and profile.",
+            "min_salary_range": 20000,
+            "max_salary_range": 30000,
+            "yrs_experience": "3.0",
+            "seniority": "middle",
+            "referrer_reward": 3000,
+            "candidate_reward": 0,
+            "reward_condition_id": 4,
+            "post_date": "2018-11-29T16:00:00.000Z",
+            "slug": "jobsrnr-content-and-digital-marketing-specialist-manager",
+            "status": "open",
+            "meta_title": "Content and Digital Marketing Specialist / Manager",
+            "meta_description": "JobsRnR is looking for a Content and Digital Marketing Manager to take the lead in marketing our referral-based jobs platform. At JobsRnR, we strongly believe that peer-to-peer referrals represent the strongest form of endorsement.",
+            "meta_title_zh_tw": null,
+            "meta_description_zh_tw": null,
+            "meta_title_zh": null,
+            "meta_description_zh": null,
+            "featured_at": null,
+            "city_id": 1,
+            "is_anonymous": false,
+            "company_id": 35,
+            "company_name": "JobsRnR",
+            "company_name_zh_tw": "JobsRnR",
+            "company_name_zh": "JobsRnR",
+            "company_logo": "https://rnrstorage.blob.core.windows.net/company-logos/e551c0bf-b751-4421-892b-13f99104260f.png",
+            "cover_image": "https://rnrstorage.blob.core.windows.net/company-cover-images/ab3dc0f5-4417-4b2e-a963-7a595025ea4f.jpg",
+            "company_website_url": "www.jobsrnr.com",
+            "company_website_protocol": "https://",
+            "company_description": "JobsRnR was founded on the simple belief that peer-to-peer referrals represent the strongest form of endorsement. Our goal is to connect employers with qualified and talented job seekers, at lower costs and with greater efficiency.",
+            "company_description_zh_tw": "JobsRnR 是香港首個以賞金為基礎的工作推薦平台。在JobsRnR體系下，您可以透過\"分享\"個人網絡，推薦朋友到合適既工作以賺取賞金。JobsRnR是一個無論推薦更好工作的機會予朋友，抑或尋找著數機會都合適既平台。",
+            "company_description_zh": "JobsRnR 是香港首个以赏金为基础的工作推荐平台。在JobsRnR体系下，您可以透过\"分享\"个人网络，推荐朋友到合适既工作以赚取赏金。 JobsRnR是一个无论推荐更好工作的机会予朋友，抑或寻找着数机会都合适既平台。",
+            "tags": [
+              {
+                "id": 85,
+                "name": "Marketing",
+                "name_zh_tw": "市場推廣",
+                "name_zh": "市场推广"
+              },
+              {
+                "id": 206,
+                "name": "SEO",
+                "name_zh_tw": "SEO",
+                "name_zh": "SEO"
+              },
+              {
+                "id": 246,
+                "name": "Digital Marketing",
+                "name_zh_tw": "數碼營銷",
+                "name_zh": "数码营销"
+              }
+            ],
+            "reward_condition": "hired",
+            "industry_name": "Information Technology (IT)",
+            "industry_name_zh": "资讯科技",
+            "industry_name_zh_tw": "資訊科技 (IT)",
+            "contract_type_name": "Full-time",
+            "contract_type_name_zh": "全职",
+            "contract_type_name_zh_tw": "全職",
+            "city_name": "Hong Kong",
+            "city_name_zh": "香港",
+            "city_name_zh_tw": "香港",
+            "city_hide_country": true,
+            "country_name": "Hong Kong",
+            "country_name_zh": "香港",
+            "country_name_zh_tw": "香港",
+            "canonical_url": "https://www.jobsrnr.com/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMg",
+            "canonical_url_zh_tw": "https://www.jobsrnr.com/zh-tw/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMg",
+            "canonical_url_zh": "https://www.jobsrnr.com/zh/job/879/jobsrnr-content-and-digital-marketing-specialist-manager?code=Xjp6XCUo5NM73mMqMg"
+          },
+          "referral_code": "Xjp6XCUo5NM73mMqMg"
+        }
+      },
       "JobSearchResult": {
         "title": "Job Search Result Schema",
         "type": "object",
@@ -573,7 +732,7 @@
             "type": "array",
             "description": "List of Jobs returned for this page",
             "items": {
-              "$ref": "#/components/schemas/JobSearchResultResultsItem"
+              "$ref": "#/components/schemas/Job"
             }
           },
           "referral_code": {
@@ -662,7 +821,7 @@
           "referral_code": "Xjp6XCUo5NM73mMqMg"
         }
       },
-      "TagSearchResultItem": {
+      "Tag": {
         "title": "Tag Search Result Item Schema",
         "type": "object",
         "properties": {
@@ -701,7 +860,7 @@
             "type": "array",
             "description": "List of Tags",
             "items": {
-              "$ref": "#/components/schemas/TagSearchResultItem"
+              "$ref": "#/components/schemas/Tag"
             }
           }
         },
@@ -718,7 +877,7 @@
           ]
         }
       },
-      "IndustrySearchResultItem": {
+      "Industry": {
         "title": "Industry Search Result Item Schema",
         "type": "object",
         "properties": {
@@ -753,7 +912,7 @@
             "type": "array",
             "description": "List of Industries",
             "items": {
-              "$ref": "#/components/schemas/IndustrySearchResultItem"
+              "$ref": "#/components/schemas/Industry"
             }
           }
         },
