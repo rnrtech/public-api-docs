@@ -57,7 +57,7 @@
             "in": "query",
             "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 50.",
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -111,7 +111,7 @@
             "in": "query",
             "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 50.",
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
@@ -181,9 +181,10 @@
           {
             "name": "featured",
             "in": "query",
-            "description": "Either true or false - denotes whether a Job is Featured or not.",
+            "description": "Either 'true' or 'false' - denotes whether a Job is Featured or not.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": ["true", "false"]
             }
           },
           {
@@ -197,9 +198,17 @@
           {
             "name": "city",
             "in": "query",
-            "description": "The ID of a City",
+            "description": "Integer ID of a City",
             "schema": {
-              "type": "string"
+              "type": "integer"
+            }
+          },
+          {
+            "name": "contractType",
+            "in": "query",
+            "description": "Integer ID of the Contract Type for a Job",
+            "schema": {
+              "type": "integer"
             }
           },
           {
@@ -207,7 +216,7 @@
             "in": "query",
             "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 10.",
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -222,9 +231,9 @@
           {
             "name": "industry",
             "in": "query",
-            "description": "The ID of an Industry",
+            "description": "Integer ID of an Industry",
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           }
         ],
