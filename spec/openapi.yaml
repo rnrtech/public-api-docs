@@ -222,10 +222,10 @@
           {
             "name": "seniority",
             "in": "query",
-            "description": "String value one of the following: entry, middle, senior",
+            "description": "String value of one of the following: entry, middle, senior",
             "schema": {
               "type": "string",
-              "enum": ["entry", "middle", "seniority"]
+              "enum": ["entry", "middle", "senior"]
             }
           },
           {
