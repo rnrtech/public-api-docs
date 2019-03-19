@@ -204,14 +204,6 @@
             }
           },
           {
-            "name": "contractType",
-            "in": "query",
-            "description": "Integer ID of the Contract Type for a Job",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
             "name": "page",
             "in": "query",
             "description": "Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 10.",
