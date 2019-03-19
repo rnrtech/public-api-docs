@@ -33,7 +33,7 @@ paths:
           in: query
           description: Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 50.
           schema:
-            type: string
+            type: integer
       responses:
         '200':
           description: Returns Tags search results
@@ -65,7 +65,7 @@ paths:
           in: query
           description: Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 50.
           schema:
-            type: string
+            type: integer
       responses:
         '200':
           description: Returns Industries search results
@@ -110,9 +110,12 @@ paths:
               - 'true'
         - name: featured
           in: query
-          description: Either true or false - denotes whether a Job is Featured or not.
+          description: Either 'true' or 'false' - denotes whether a Job is Featured or not.
           schema:
             type: string
+            enum:
+              - 'true'
+              - 'false'
         - name: tags
           in: query
           description: ID(s) of tags that a Job must have.
@@ -120,28 +123,33 @@ paths:
             type: string
         - name: city
           in: query
-          description: The ID of a City
+          description: Integer ID of a City
           schema:
-            type: string
+            type: integer
+        - name: contractType
+          in: query
+          description: Integer ID of the Contract Type for a Job
+          schema:
+            type: integer
         - name: page
           in: query
           description: Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 10.
           schema:
-            type: string
+            type: integer
         - name: seniority
           in: query
-          description: 'String value one of the following: entry, middle, senior'
+          description: 'String value of one of the following: entry, middle, senior'
           schema:
             type: string
             enum:
               - entry
               - middle
-              - seniority
+              - senior
         - name: industry
           in: query
-          description: The ID of an Industry
+          description: Integer ID of an Industry
           schema:
-            type: string
+            type: integer
       responses:
         '200':
           description: Returns Job search results
