@@ -235,6 +235,14 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "contractType",
+            "in": "query",
+            "description": "Integer ID of the Contract Type ID for the Job opening. Possible values: 1 (Full-time), 2 (Part-time), 3 (Contract) and 4 (Internship).",
+            "schema": {
+              "type": "integer"
+            }
           }
         ],
         "responses": {
