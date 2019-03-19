@@ -126,11 +126,6 @@ paths:
           description: Integer ID of a City
           schema:
             type: integer
-        - name: contractType
-          in: query
-          description: Integer ID of the Contract Type for a Job
-          schema:
-            type: integer
         - name: page
           in: query
           description: Integer representing page number. Pages are zero-indexed - the first set of results returned is on page 0. Size per page is set to 10.
@@ -148,6 +143,11 @@ paths:
         - name: industry
           in: query
           description: Integer ID of an Industry
+          schema:
+            type: integer
+        - name: contractType
+          in: query
+          description: 'Integer ID of the Contract Type ID for the Job opening. Possible values: 1 (Full-time), 2 (Part-time), 3 (Contract) and 4 (Internship).'
           schema:
             type: integer
       responses:
