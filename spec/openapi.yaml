@@ -497,6 +497,22 @@
             "type": "boolean",
             "description": "Boolean indicating whether this Job opening is anonymous or not. If true, Company related fields will be set to null."
           },
+          "salary_currency_id": {
+            "type": "integer",
+            "description": "ID representing the Currency for the Salary Range"
+          },
+          "salary_currency_prefix": {
+            "type": "string",
+            "description": "String representation of the prefix of the Currency for the Salary Range"
+          },
+          "salary_currency_name": {
+            "type": "string",
+            "description": "Name of the Currency for the Salary Range"
+          },
+          "salary_currency_symbol": {
+            "type": "string",
+            "description": "Symbol of the Currency for the Salary Range"
+          },
           "company_id": {
             "type": "integer",
             "description": "ID of the Company hiring for this Job opening"
@@ -691,6 +707,10 @@
             "featured_at": null,
             "city_id": 1,
             "is_anonymous": false,
+            "salary_currency_id": 1,
+            "salary_currency_prefix": "HKD",
+            "salary_currency_name": "Hong Kong Dollar",
+            "salary_currency_symbol": "$",
             "company_id": 35,
             "company_name": "JobsRnR",
             "company_name_zh_tw": "JobsRnR",
@@ -792,6 +812,10 @@
               "featured_at": null,
               "city_id": 1,
               "is_anonymous": false,
+              "salary_currency_id": 1,
+              "salary_currency_prefix": "HKD",
+              "salary_currency_name": "Hong Kong Dollar",
+              "salary_currency_symbol": "$",
               "company_id": 35,
               "company_name": "JobsRnR",
               "company_name_zh_tw": "JobsRnR",
